@@ -1,0 +1,242 @@
+@charset "UTF-8";
+:root {
+    --alturaCabecera: 120px;
+    --alturaPie: 60px;
+    --alturaMenu: 50px;
+    --anchuraElemMenu: 200px;
+
+
+    --paddingGeneral: 10px;
+
+    --sizeFuenteMenu: 22px;
+
+    --widthLabel: 90px;
+    --marginInput: 5px;
+    --widthInput: 300px;
+    --heightInput: 30px;
+
+    --colorPrincipal: #606c38;
+    --colorPrincipalClaro: #90a955;
+    --colorPrincipalOscuro: #283618;
+
+    --colorContraste: #bc6c25;
+    --colorContrasteOscuro: #582f0e;
+    --colorContrasteClaro: #dda15e;
+
+    --fondoClaro: #f6f0f0;
+    --fondoOscuro: #cccbcb;
+
+    --fuenteSerif: "Garamond";
+    --fuenteSans: "Helvetica";
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+
+
+    font-family: var(--fuenteSans);
+}
+
+/*Estilos de la cabecera*/
+header {
+    height: var(--alturaCabecera);
+
+    background-color: var(--colorPrincipal);
+    padding: var(--paddingGeneral);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#header_izq {
+
+
+    width: 100%;
+    text-align: center;
+
+
+}
+
+
+h1 {
+    color: var(--colorPrincipalClaro);
+    font-family: var(--fuenteSerif);
+
+}
+
+
+
+/*Estilos de la barra de menu*/
+
+nav {
+    background-color: var(--colorPrincipalClaro);
+    border: 1px solid;
+
+}
+
+nav ul {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+nav ul li {
+
+    list-style: none;
+
+}
+
+.enlace_menu {
+
+    display: inline-block;
+
+    width: var(--anchuraElemMenu);
+    height: var(--alturaMenu);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: var(--sizeFuenteMenu);
+    color: var(--colorPrincipalOscuro);
+
+}
+
+.enlace_menu:visited {
+
+    color: var(--colorPrincipalOscuro);
+
+}
+
+.enlace_menu:hover {
+
+    background-color: var(--colorContraste);
+
+}
+
+.enlace_menu:active {
+
+    background-color: var(--colorContraste);
+    color: var(--colorContrasteClaro);
+
+}
+/*Estilos de cuerpo*/
+main {
+    display: flex;
+    background-color: var(--fondoOscuro);
+    min-height: calc(100vh - (var(--alturaCabecera) + var(--alturaPie) + var(--paddingGeneral)*2));
+    border: 1px solid;
+}
+
+
+
+section {
+    background-color: var(--fondoClaro);
+    margin: var(--paddingGeneral);
+    padding: var(--paddingGeneral);
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(40, 36, 36, 0.3);
+}
+
+/* Estilo para el formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--colorPrincipal);
+    margin: 40px auto;
+    width: 500px;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 1em;
+
+}
+
+.input_div {
+    margin: var(--paddingGeneral);
+
+}
+
+/* Estilo para las etiquetas */
+label {
+    display: inline-block;
+    width: var(--widthLabel);
+    text-align: right;
+}
+
+/* Estilo para los campos de texto */
+input,
+select {
+    font: 1em sans-serif;
+    margin: 5px;
+    width: var(--widthInput);
+    height: var(--heightInput);
+    box-sizing: border-box;
+    border: 1px solid #999;
+    border-radius: 5px;
+
+}
+
+input[type="submit"] {
+
+    width: 200px;
+
+}
+
+
+/* Estilo para table */
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th,
+td {
+	border: 1px solid var(--colorPrincipalOscuro);
+	text-align: left;
+	padding: 8px;
+}
+
+table th {
+	background-color: var(--colorContraste);
+}
+
+table td {
+	color: var(--colorPrincipalOscuro);
+
+}
+
+
+/*Estilos de el footer*/
+
+footer {
+    background-color: var(--colorPrincipal);
+    height: var(--alturaPie);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+footer p {
+
+    margin-bottom: var(--paddingGeneral);
+    font-size: 22px;
+    color: var(--colorPrincipalClaro);
+    font-weight: bold;
+}
