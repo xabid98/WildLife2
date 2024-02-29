@@ -1,8 +1,5 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
-
 
 <!DOCTYPE html>
 <html>
@@ -18,7 +15,15 @@
 		<%@ include file="includes/menu_nav.jsp"%>
 
 		<section>
-			
+			<div class="div_seguridad">
+				<button>	
+					<a href="CrearCopia">Crear copia</a>
+				</button>
+				
+				<button>	
+					<a href="RestaurarCopia">Restaurar copia</a>
+				</button>
+			</div>
 		</section>
 	</main>
 

@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.xabi.modelo.DAO_Constantes;
 import com.xabi.modelo.DB_Helper;
 import com.xabi.modelo.dto.Animal;
+import com.xabi.modelo.dto.Especie;
+import com.xabi.modelo.dto.V_Animal;
 
 @WebServlet("/ModificarAnimal")
 public class ModificarAnimal extends HttpServlet implements DAO_Constantes{
@@ -53,8 +55,6 @@ public class ModificarAnimal extends HttpServlet implements DAO_Constantes{
 		// 2 Maquetar los datos a DTO
 		Animal nuevoAnimal = new Animal(id, nombre, peso, edad, fk_especie);
 
-		// 2 Maquetar los datos a DTO
-
 		// 3 Conexión a la BD
 		DB_Helper db = new DB_Helper();
 		Connection con = db.conectar();
@@ -62,25 +62,20 @@ public class ModificarAnimal extends HttpServlet implements DAO_Constantes{
 		// 4 Realización de la funcionalidad
 		db.modificarAnimal(con,nuevoAnimal);
 		
-		List<Animal> listaAnimales = db.obtenerTodosAnimal(con);
-		
+		List<V_Animal> listaAnimales=db.obtenerTodosAnimalV(con);
 
 		// 5 Cierre de conexión
-
 		db.desconectar(con);
 
 		// 6 Empaquetado de datos
 		request.setAttribute(ATR_LISTA_ANI, listaAnimales);
 
 		// 7 Redireccion a una vista
-
 		request.getRequestDispatcher(JSP_INDEX).forward(request, response);
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }

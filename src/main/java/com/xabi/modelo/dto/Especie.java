@@ -37,7 +37,4 @@ public class Especie {
 	public String toString() {
 		return "Especie [id=" + id + ", especie=" + especie + "]";
 	}
-	
-	
-	
 }

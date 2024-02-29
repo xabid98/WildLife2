@@ -13,43 +13,37 @@ import javax.servlet.http.HttpServletResponse;
 import com.xabi.modelo.DAO_Constantes;
 import com.xabi.modelo.DB_Helper;
 import com.xabi.modelo.dto.Animal;
+import com.xabi.modelo.dto.V_Animal;
 
 
 @WebServlet("/MostrarMenu")
 public class MostrarMenu extends HttpServlet implements DAO_Constantes{
 	private static final long serialVersionUID = 1L;
        
-   
     public MostrarMenu() {
         super();
     }
-
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DB_Helper db= new DB_Helper();
 		Connection con=db.conectar();
 		
 		//4 Realización de la funcionalidad
-		List<Animal> listaAnimales=db.obtenerTodosAnimal(con);
+		List<V_Animal> listaAnimales=db.obtenerTodosAnimalV(con);
 
-		
 		//5 Cierre de conexión
-		
 		db.desconectar(con); 
 		
 		//6 Empaquetado de datos 
 		request.setAttribute(ATR_LISTA_ANI, listaAnimales);
 
-	//7 Redireccion a una vista
-		
+		//7 Redireccion a una vista
 		request.getRequestDispatcher(JSP_INDEX).forward(request, response);
 	
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		doGet(request, response);
 	}
-
 }

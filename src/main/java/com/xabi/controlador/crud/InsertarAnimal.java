@@ -13,20 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.xabi.modelo.DAO_Constantes;
 import com.xabi.modelo.DB_Helper;
 import com.xabi.modelo.dto.Animal;
+import com.xabi.modelo.dto.Especie;
+import com.xabi.modelo.dto.V_Animal;
 
-/**
- * Servlet implementation class InsertarAnimal
- */
 @WebServlet("/InsertarAnimal")
 public class InsertarAnimal extends HttpServlet implements DAO_Constantes{
 	private static final long serialVersionUID = 1L;
        
-   
     public InsertarAnimal() {
         super();
     }
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//1 Obtención de datos
@@ -48,8 +45,6 @@ public class InsertarAnimal extends HttpServlet implements DAO_Constantes{
 		if (request.getParameter("fk_especie") != null) {
 			fk_especie = Integer.parseInt(request.getParameter("fk_especie")); 
 		}
-		
-		
 
 		//2 Maquetar los datos a DTO
 			Animal nuevoAnimal= new Animal(0, nombre, peso, edad, fk_especie);
@@ -61,27 +56,22 @@ public class InsertarAnimal extends HttpServlet implements DAO_Constantes{
 		//4 Realización de la funcionalidad
 			db.insertaAnimal(con,nuevoAnimal);
 				
-			List<Animal> listaAnimales=db.obtenerTodosAnimal(con);
-
-		//5 Cierre de conexión
-					
+			List<Especie> listaEspecies=db.obtenerTodosEspecie(con);
+			List<V_Animal> listaAnimales=db.obtenerTodosAnimalV(con);
+			
+		//5 Cierre de conexión			
 			db.desconectar(con);
 					
 		//6 Empaquetado de datos
 			request.setAttribute(ATR_LISTA_ANI, listaAnimales);
+			request.setAttribute(ATR_LISTA_ESP, listaEspecies);
 
-
-		//7 Redireccion a una vista
-					
+		//7 Redireccion a una vista					
 			request.getRequestDispatcher(JSP_INDEX).forward(request, response);
-
-	
-	
+			
 	}
-
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.xabi.modelo.DAO_Constantes;
 import com.xabi.modelo.DB_Helper;
 import com.xabi.modelo.dto.Animal;
+import com.xabi.modelo.dto.V_Animal;
 
 /**
  * Servlet implementation class BorrarAnimal
@@ -20,20 +21,17 @@ import com.xabi.modelo.dto.Animal;
 @WebServlet("/BorrarAnimal")
 public class BorrarAnimal extends HttpServlet implements DAO_Constantes{
 	private static final long serialVersionUID = 1L;
-       
-    
+          
     public BorrarAnimal() {
         super();
     }
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1 Obtención de datos
 		int id = 0;
 		if (request.getParameter("id") != null) {
 			id =Integer.parseInt(request.getParameter("id"));
 		}
-		//2 Maquetar los datos a DTO
 		
 		//3 Conexión a la BD
 		DB_Helper db= new DB_Helper();
@@ -42,24 +40,21 @@ public class BorrarAnimal extends HttpServlet implements DAO_Constantes{
 		//4 Realización de la funcionalidad
 		db.borrarAnimalPorId(con, id);
 
-		List<Animal> listaAnimales=db.obtenerTodosAnimal(con);
+		List<V_Animal> listaAnimales=db.obtenerTodosAnimalV(con);
 
 		//5 Cierre de conexión
-		
 		db.desconectar(con); 
 		
 		//6 Empaquetado de datos 
 		request.setAttribute(ATR_LISTA_ANI, listaAnimales);
 
-	//7 Redireccion a una vista
+		//7 Redireccion a una vista
 		
 		request.getRequestDispatcher(JSP_INDEX).forward(request, response);
 }	
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

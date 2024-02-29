@@ -1,3 +1,4 @@
+<%@page import="com.xabi.modelo.dto.V_Animal"%>
 <%@page import="com.xabi.modelo.dto.Animal"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -5,29 +6,23 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@pageimport="java.util.List"%>
-<%@pageimport="com.xabi.modelo.dto.Animal"%>
+<%@pageimport="com.xabi.modelo.dto.V_Animal"%>
 <%@pageimport="java.util.ArrayList"%>
 
-
 <%
-List<Animal> listaTodosAnimales = new ArrayList<Animal>();
+List<V_Animal> listaTodosAnimales = new ArrayList<V_Animal>();
 
 if (request.getAttribute(DAO_Constantes.ATR_LISTA_ANI) != null) {
-	listaTodosAnimales = (List<Animal>) request.getAttribute(DAO_Constantes.ATR_LISTA_ANI);
+	listaTodosAnimales = (List<V_Animal>) request.getAttribute(DAO_Constantes.ATR_LISTA_ANI);
 }
 %>
-
-
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<link rel="stylesheet" media="screen and (min-width: 481px) "
-	href="styles/sobremesa.css">
-<link rel="stylesheet" media="screen and (max-width: 480px)"
-	href="styles/movil.css">
+<link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
 
@@ -43,25 +38,31 @@ if (request.getAttribute(DAO_Constantes.ATR_LISTA_ANI) != null) {
 						<th>NOMBRE</th>
 						<th>PESO</th>
 						<th>EDAD</th>
-						<th>FK_ESPECIE</th>
-						<th>BORRAR</th>
+						<th>ESPECIE</th>
 						<th>MODIFICAR</th>
+						<th>BORRAR</th>
 					</tr>
 				</thead>
-
 				<tbody>
 					<%
-					for (Animal elemento : listaTodosAnimales) {
+					for (V_Animal elemento : listaTodosAnimales) {
 					%>
 					<tr>
 						<td><%=elemento.getId()%></td>
 						<td><%=elemento.getNombre()%></td>
 						<td><%=elemento.getPeso()%></td>
 						<td><%=elemento.getEdad()%></td>
-						<td><%=elemento.getFk_especie()%></td>
-						<td> <a href="BorrarAnimal?id=<%=elemento.getId()%>">BORRAR</a></td>
-						<td> <a href="SelecAnimal?id=<%=elemento.getId()%>">MODIFICAR</a></td>
-						
+						<td><%=elemento.getEspecie()%></td>
+						<td> 
+							<a href="BorrarAnimal?id=<%=elemento.getId()%>">
+								<img alt="MODIFICAR" src="images/modificar.png">
+							</a>
+						</td>
+						<td> 
+							<a href="SelecAnimal?id=<%=elemento.getId()%>">
+								<img alt="BORRAR" src="images/borrar.png">
+							</a>
+						</td>						
 					</tr>
 					<%
 					}
